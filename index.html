@@ -7,5 +7,22 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <h1>Etch-A-Sketch</h1>
+
+    <div class="buttons">
+      <button type="button" class="btn-create-new-grid">
+        Create a new grid
+      </button>
+
+      <button
+        type="button"
+        class="btn-clear-existing-grid"
+        onclick="clearGrid()"
+      >
+        Clear the grid
+      </button>
+    </div>
+    <div class="container-grid-main"></div>
+  </body>
 </html>
