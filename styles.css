@@ -4,6 +4,13 @@
   width: 960px;
   height: 960px;
   border: 5px solid orange;
+  border-radius: 5px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
 }
 
 .row {

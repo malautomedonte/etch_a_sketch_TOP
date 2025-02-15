@@ -1,9 +1,16 @@
 const mainContainer = document.querySelector(".container-grid-main");
 const btnCreate = document.querySelector(".btn-create-new-grid");
 const btnClearGrid = document.querySelector(".btn-clear-existing-grid");
+const colorPicker = document.querySelector("#favcolor");
+const randomCheckBox = document.querySelector("#toggleRandom");
 
 let rows = 16;
 let columns = 16;
+let selectedColor = colorPicker.value;
+
+const getUserColor = function () {
+  selectedColor = colorPicker.value;
+};
 
 const initializeGrid = function () {
   for (let i = 0; i <= rows; i++) {
@@ -17,8 +24,14 @@ const initializeGrid = function () {
       row.appendChild(square);
 
       square.addEventListener("mouseenter", () => {
-        square.classList.add("hovered");
+        if (randomCheckBox.checked) {
+          square.style.backgroundColor = getRandomColor();
+        } else {
+          square.style.backgroundColor = selectedColor;
+        }
       });
+
+      row.appendChild(square);
     }
 
     mainContainer.appendChild(row);
@@ -27,8 +40,16 @@ const initializeGrid = function () {
 
 const clearGrid = function () {
   document.querySelectorAll(".square").forEach((square) => {
-    square.classList.remove("hovered");
+    square.style.backgroundColor = "";
   });
+};
+
+const getRandomColor = function () {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+
+  return `rgb(${r}, ${g}, ${b})`;
 };
 
 initializeGrid();
@@ -47,3 +68,5 @@ btnCreate.addEventListener("click", () => {
     alert("Invalid input! Please enter a number between 1 and 100.");
   }
 });
+
+colorPicker.addEventListener("input", getUserColor);
