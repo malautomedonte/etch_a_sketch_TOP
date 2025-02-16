@@ -13,6 +13,8 @@ const getUserColor = function () {
 };
 
 const initializeGrid = function () {
+  mainContainer.innerHTML = "";
+
   for (let i = 0; i <= rows; i++) {
     const row = document.createElement("div");
     row.classList.add("row");
@@ -22,21 +24,32 @@ const initializeGrid = function () {
       const square = document.createElement("div");
       square.classList.add("square");
       row.appendChild(square);
-
-      square.addEventListener("mouseenter", () => {
-        if (randomCheckBox.checked) {
-          square.style.backgroundColor = getRandomColor();
-        } else {
-          square.style.backgroundColor = selectedColor;
-        }
-      });
-
-      row.appendChild(square);
     }
 
     mainContainer.appendChild(row);
   }
 };
+
+// Event delegation, optimize memory usage, listener attached to mainContainer instead of every square.
+mainContainer.addEventListener(
+  "mouseenter",
+  (event) => {
+    if (event.target.classList.contains("square")) {
+      if (randomCheckBox.checked) {
+        event.target.style.backgroundColor = getRandomColor();
+      } else {
+        event.target.style.backgroundColor = selectedColor;
+      }
+    }
+  },
+  true
+); // "true" sets the listener to the capture phase to catch events sooner
+
+mainContainer.addEventListener("mouseup", (event) => {
+  if (event.button === 2 && event.target.classList.contains("square")) {
+    event.target.style.backgroundColor = "";
+  }
+});
 
 const clearGrid = function () {
   document.querySelectorAll(".square").forEach((square) => {
