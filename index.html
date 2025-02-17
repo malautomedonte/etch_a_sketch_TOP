@@ -13,17 +13,19 @@
 
       <div class="options-panel">
         <div class="btns">
-          <button type="button" class="btn-create-new-grid">
+          <button type="button" class="btn-options create-new-grid">
             Create a new grid
           </button>
 
           <button
             type="button"
-            class="btn-clear-existing-grid"
+            class="btn-options clear-existing-grid"
             onclick="clearGrid()"
           >
             Clear the grid
           </button>
+
+          <button class="btn-options show-modal">Instructions</button>
         </div>
 
         <div class="inputs">
@@ -35,6 +37,19 @@
         </div>
       </div>
       <div class="container-grid-main"></div>
+      <div class="modal hidden">
+        <button class="close-modal">&times;</button>
+        <h1>Instructions 🧾</h1>
+        <p>
+          <ul>
+            <li class="modal-instructions"> You can start with a 16x16 grid, or create a bigger one (max 100x100)</li>
+            <li class="modal-instructions">You can check the box to get random colors as you draw, or pick your favorite color</li>
+            <li class="modal-instructions">You can stop drawing by clicking the RM button, and you can start drawing again by pressing the LM button</li>
+          </ul>
+        </p>
+        <p>Have fun! 🎉</p>
+      </div>
+      <div class="overlay hidden"></div>
     </div>
   </body>
 </html>
